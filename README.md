@@ -32,14 +32,20 @@ In order to load the `validate_feature` function you will need to include the `w
 
 The `go-whosonfirst-validate-wasm/http` package provides methods for appending static assets and HTML resources to existing web applications to facilitate the use of the `validate_feature` WebAssembly binary. For example:
 
+_Note the use of the `sfomuseum/go-http-wasm` package which is an HTTP middleware package for serving and appending resources to the `wasm_exec.js` JavaScript library._
+
 ```
 package main
 
 import (
 	"embed"
-	wasm "github.com/whosonfirst/go-whosonfirst-validate-wasm/http"
+	"flag"
+	"fmt"
 	"log"
 	"net/http"
+
+	validate_wasm "github.com/whosonfirst/go-whosonfirst-validate-wasm/http"
+	"github.com/sfomuseum/go-http-wasm"	
 )
 
 //go:embed index.html example.*
@@ -47,21 +53,29 @@ var FS embed.FS
 
 func main() {
 
+	host := flag.String("host", "localhost", "The host name to listen for requests on")
+	port := flag.Int("port", 8080, "The host port to listen for requests on")
+
+	flag.Parse()
+
 	mux := http.NewServeMux()
 
 	wasm.AppendAssetHandlers(mux)
+
+	validate_wasm.AppendAssetHandlers(mux)
 
 	http_fs := http.FS(FS)
 	example_handler := http.FileServer(http_fs)
 
 	wasm_opts := wasm.DefaultWASMOptions()
-	wasm_opts.EnableWASMExec()
-
 	example_handler = wasm.AppendResourcesHandler(example_handler, wasm_opts)
+	
+	validate_wasm_opts := validate_wasm.DefaultWASMOptions()
+	example_handler = validate_wasm.AppendResourcesHandler(example_handler, validate_wasm_opts)
 
 	mux.Handle("/", example_handler)
 
-	addr := "localhost:8080"
+	addr := fmt.Sprintf("%s:%d", *host, *port)
 	log.Printf("Listening for requests on %s\n", addr)
 
 	http.ListenAndServe(addr, mux)
@@ -95,3 +109,5 @@ If you add a `"wof:repo":"whosonfirst-data-example"` property and resubmit the d
 ## See also
 
 * https://github.com/whosonfirst/go-whosonfirst-validate
+* https://github.com/sfomuseum/go-http-wasm
+* https://github.com/golang/go/wiki/WebAssembly
