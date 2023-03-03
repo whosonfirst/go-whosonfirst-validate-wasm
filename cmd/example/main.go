@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/sfomuseum/go-http-wasm"
 	validate_wasm "github.com/whosonfirst/go-whosonfirst-validate-wasm/http"
-	"github.com/sfomuseum/go-http-wasm"	
 )
 
 //go:embed index.html example.*
@@ -28,7 +28,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to append wasm assets handler, %v", err)
 	}
-	
+
 	err = validate_wasm.AppendAssetHandlers(mux)
 
 	if err != nil {
@@ -40,9 +40,6 @@ func main() {
 
 	wasm_opts := wasm.DefaultWASMOptions()
 	example_handler = wasm.AppendResourcesHandler(example_handler, wasm_opts)
-	
-	validate_wasm_opts := validate_wasm.DefaultWASMOptions()
-	example_handler = validate_wasm.AppendResourcesHandler(example_handler, validate_wasm_opts)
 
 	mux.Handle("/", example_handler)
 

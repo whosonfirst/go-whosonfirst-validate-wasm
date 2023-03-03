@@ -61,7 +61,6 @@ func main() {
 	mux := http.NewServeMux()
 
 	wasm.AppendAssetHandlers(mux)
-
 	validate_wasm.AppendAssetHandlers(mux)
 
 	http_fs := http.FS(FS)
@@ -69,9 +68,6 @@ func main() {
 
 	wasm_opts := wasm.DefaultWASMOptions()
 	example_handler = wasm.AppendResourcesHandler(example_handler, wasm_opts)
-	
-	validate_wasm_opts := validate_wasm.DefaultWASMOptions()
-	example_handler = validate_wasm.AppendResourcesHandler(example_handler, validate_wasm_opts)
 
 	mux.Handle("/", example_handler)
 

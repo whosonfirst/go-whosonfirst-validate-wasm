@@ -41,7 +41,7 @@ window.addEventListener("load", function load(event){
 	btn.removeAttribute("disabled");
     };
     
-    whosonfirst.validate.feature.init().then(rsp => {
+    sfomuseum.wasm.fetch("/wasm/validate_feature.wasm").then(rsp => {
 	init();	
     });
     

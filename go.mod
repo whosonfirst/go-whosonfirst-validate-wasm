@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/aaronland/go-http-static v0.0.2
-	github.com/sfomuseum/go-http-wasm v1.0.0
+	github.com/sfomuseum/go-http-wasm v1.1.0
 	github.com/whosonfirst/go-whosonfirst-validate v0.3.2
 )
 

@@ -5,7 +5,7 @@ import (
 	"log"
 	"syscall/js"
 
-	"github.com/whosonfirst/go-whosonfirst-validate"	
+	"github.com/whosonfirst/go-whosonfirst-validate"
 )
 
 func ExportFunc(opts *validate.Options) js.Func {

@@ -19,7 +19,7 @@ github.com/sfomuseum/go-edtf/level2
 github.com/sfomuseum/go-edtf/parser
 github.com/sfomuseum/go-edtf/re
 github.com/sfomuseum/go-edtf/tests
-# github.com/sfomuseum/go-http-wasm v1.0.0
+# github.com/sfomuseum/go-http-wasm v1.1.0
 ## explicit; go 1.18
 github.com/sfomuseum/go-http-wasm
 github.com/sfomuseum/go-http-wasm/static

@@ -16,8 +16,8 @@ github.com/pkg/errors v0.8.0/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINE
 github.com/sfomuseum/go-edtf v1.1.1 h1:R5gElndHGDaK/rGSh2X+ulaLtlcHCdQA1cTzB8e9wv8=
 github.com/sfomuseum/go-edtf v1.1.1/go.mod h1:1rP0EJZ/84j3HO80vGcnG2T9MFBDAFyTNtjrr8cv3T4=
 github.com/sfomuseum/go-flags v0.7.0/go.mod h1:ML3DTNbF9xnjExSdS/9FtVLjIUhRU5gm/ehzISv+t2w=
-github.com/sfomuseum/go-http-wasm v1.0.0 h1:UwY0iM+4BwnOoewlVvpeJCDk+PJC992Km/PSos0rmiY=
-github.com/sfomuseum/go-http-wasm v1.0.0/go.mod h1:njFA3D6WDdiawJKKvOtymMwkh4lYLsZ9X9SBuB7ldJg=
+github.com/sfomuseum/go-http-wasm v1.1.0 h1:J8mTCpZo8P6HUjyM5VqlL+8AYuohF/b6J+JNHi6Vho8=
+github.com/sfomuseum/go-http-wasm v1.1.0/go.mod h1:njFA3D6WDdiawJKKvOtymMwkh4lYLsZ9X9SBuB7ldJg=
 github.com/tidwall/gjson v1.14.4 h1:uo0p8EbA09J7RQaflQ1aBRffTR7xedD2bcIVSYxLnkM=
 github.com/tidwall/gjson v1.14.4/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=
 github.com/tidwall/match v1.1.1 h1:+Ho715JplO36QYgwN9PGYNhgZvoUSc9X2c80KVTi+GA=
