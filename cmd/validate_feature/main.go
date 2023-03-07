@@ -27,7 +27,7 @@ func ExportFunc(opts *validate.Options) js.Func {
 					reject.Invoke(fmt.Sprintf("Failed to export data, %v", err))
 					return
 				}
-
+				
 				resolve.Invoke()
 			}()
 
@@ -42,8 +42,8 @@ func ExportFunc(opts *validate.Options) js.Func {
 func main() {
 
 	opts := validate.DefaultValidateOptions()
-
 	export_func := ExportFunc(opts)
+	
 	defer export_func.Release()
 
 	js.Global().Set("validate_feature", export_func)
