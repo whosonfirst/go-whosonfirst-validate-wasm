@@ -4,7 +4,10 @@ github.com/aaronland/go-http-rewrite
 # github.com/aaronland/go-http-static v0.0.2
 ## explicit; go 1.18
 github.com/aaronland/go-http-static
-# github.com/dominikbraun/graph v0.16.0
+# github.com/aaronland/go-roster v1.0.0
+## explicit; go 1.16
+github.com/aaronland/go-roster
+# github.com/dominikbraun/graph v0.16.1
 ## explicit; go 1.18
 github.com/dominikbraun/graph
 github.com/dominikbraun/graph/draw
@@ -50,10 +53,10 @@ github.com/whosonfirst/go-whosonfirst-flags/existential
 ## explicit; go 1.12
 github.com/whosonfirst/go-whosonfirst-names
 github.com/whosonfirst/go-whosonfirst-names/tags
-# github.com/whosonfirst/go-whosonfirst-placetypes v0.6.0
+# github.com/whosonfirst/go-whosonfirst-placetypes v0.7.0
 ## explicit; go 1.18
 github.com/whosonfirst/go-whosonfirst-placetypes
-# github.com/whosonfirst/go-whosonfirst-validate v0.3.4
+# github.com/whosonfirst/go-whosonfirst-validate v0.3.5
 ## explicit; go 1.18
 github.com/whosonfirst/go-whosonfirst-validate
 # go.mongodb.org/mongo-driver v1.11.1
