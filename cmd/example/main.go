@@ -23,7 +23,7 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	wasm_opts := wasm.DefaultWASMOptions()	
+	wasm_opts := wasm.DefaultWASMOptions()
 	err := wasm.AppendAssetHandlers(mux, wasm_opts)
 
 	if err != nil {
