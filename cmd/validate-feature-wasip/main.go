@@ -1,30 +1,33 @@
 package main
 
 import (
-	"fmt"
-	"flag"
+	_ "fmt"
+	"io"
+	"log"
+	"os"
 
 	"github.com/whosonfirst/go-whosonfirst-validate"
 )
 
 func main() {
 
-	flag.Parse()
+	body, err := io.ReadAll(os.Stdin)
 
-	for _, raw := range flag.Args() {
-		fmt.Println(validate_feature(raw))
+	if err != nil {
+		log.Fatalf("Failed to read from STDIN, %v", err)
 	}
+
+	err = validate_feature(body)
+
+	if err != nil {
+		log.Fatalf("Failed to validate feature, %v", err)
+	}
+
 }
 
 //export validate_feature
-func validate_feature(raw string) string {
+func validate_feature(raw []byte) error {
 
-	opts := validate.DefaultValidateOptions()	
-	err := validate.ValidateWithOptions([]byte(raw), opts)
-
-	if err != nil {
-		return err.Error()
-	}
-
-	return ""
+	opts := validate.DefaultValidateOptions()
+	return validate.ValidateWithOptions(raw, opts)
 }

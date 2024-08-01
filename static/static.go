@@ -5,5 +5,5 @@ import (
 	"embed"
 )
 
-//go:embed wasm/* 
+//go:embed wasm/*
 var FS embed.FS
