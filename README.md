@@ -1,16 +1,21 @@
 # go-whosonfirst-validate-wasm
 
-Go package for compiling the `Validate` method of the go-whosonfirst-validate package to a JavaScript-compatible WebAssembly (wasm) binary. It also provides a net/http middleware packages for appending the necessary static assets and HTML resources to use the wasm binary in web applications.
+Go package for compiling the `Validate` method of the go-whosonfirst-validate package to JavaScript-compatible and wasip1 WebAssembly (wasm) binaries. It also provides a net/http middleware packages for appending the necessary static assets and HTML resources to use the wasm binary in web applications.
 
 ## Build
 
-To build the `validate_feature` WebAssembly binary for use in your applications run the following command:
+### wasmjs
+
+To build the `validate_feature` WebAssembly binary for use in your JavaSceipt applications run the `wasm` Makefile target:
 
 ```
-GOOS=js GOARCH=wasm go build -mod vendor -o validate_feature.wasm cmd/validate_feature/main.go
+$> make wasm
+GOOS=js GOARCH=wasm go build -mod vendor -ldflags="-s -w" \
+		-o static/wasm/validate_feature.wasm \
+		cmd/validate-feature-wasmjs/main.go
 ```
 
-## Use
+#### Use
 
 To use the `validate_feature` WebAssembly binary in your applications a JSON-encoded GeoJSON string to the `validate_feature` function.
 
@@ -28,7 +33,7 @@ The function returns a JavaScript `Promise` that will return a JSON-encoded Who'
 
 In order to load the `validate_feature` function you will need to include the `wasm_exec.js` and `whosonfirst.validate.feature.js` JavaScript files, or functional equivalents. Both scripts are bundled with this package in the [static/javascript](static/javascript) folder.
 
-## Middleware
+#### Middleware
 
 The `go-whosonfirst-validate-wasm/http` package provides methods for appending static assets and HTML resources to existing web applications to facilitate the use of the `validate_feature` WebAssembly binary. For example:
 
@@ -81,7 +86,7 @@ func main() {
 
 _Error handling omitted for brevity._
 
-## Example
+#### Example
 
 There is a full working example of this application in the `cmd/example` folder. To run this application type the following command:
 
@@ -103,8 +108,31 @@ If you add a `"wof:repo":"whosonfirst-data-example"` property and resubmit the d
 
 ![](docs/images/whosonfirst-validate-valid.png)
 
+### wasip
+
+To build the `validate_feature` WebAssembly WASI (wasip1) binary for use in your applications run the `wasi` Makefile target:
+
+```
+$> make wasi
+GOOS=wasip1 GOARCH=wasm go build -mod vendor -ldflags="-s -w" \
+		-o static/wasi/validate_feature.wasm \
+		./cmd/validate-feature-wasip/main.go
+```
+
+#### Use
+
+The `validate_feature.wasm` binary reads from STDIN and will report any errors found validating that input. For example:
+
+```
+$> cat fixtures/102527513.geojson | wasmer ./static/wasi/validate_feature.wasm
+
+$> cat fixtures/102527513-bunk.geojson | wasmer ./static/wasi/validate_feature.wasm
+2024/08/01 12:05:37 Failed to validate feature, Failed to validate ID, Failed to derive wof:id from body, Invalid wof:id '"102527513"'
+```
+
 ## See also
 
 * https://github.com/whosonfirst/go-whosonfirst-validate
 * https://github.com/sfomuseum/go-http-wasm
+* https://go.dev/blog/wasi
 * https://github.com/golang/go/wiki/WebAssembly

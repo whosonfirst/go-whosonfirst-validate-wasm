@@ -5,9 +5,17 @@ LDFLAGS=-s -w
 
 rebuild:
 	@make wasm
+	@make wasi
 
 wasm:
-	GOOS=js GOARCH=wasm go build -mod $(GOMOD) -ldflags="$(LDFLAGS)" -o static/wasm/validate_feature.wasm cmd/validate_feature/main.go
+	GOOS=js GOARCH=wasm go build -mod $(GOMOD) -ldflags="$(LDFLAGS)" \
+		-o static/wasm/validate_feature.wasm \
+		cmd/validate-feature-wasmjs/main.go
+
+wasi:
+	GOOS=wasip1 GOARCH=wasm go build -mod $(GOMOD) -ldflags="$(LDFLAGS)" \
+		-o static/wasi/validate_feature.wasm \
+		./cmd/validate-feature-wasip/main.go
 
 example:
 	go run -mod $(GOMOD) cmd/example/main.go
