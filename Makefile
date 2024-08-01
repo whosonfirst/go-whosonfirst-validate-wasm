@@ -3,10 +3,9 @@ GOROOT=$(shell go env GOROOT)
 GOMOD=$(shell test -f "go.work" && echo "readonly" || echo "vendor")
 LDFLAGS=-s -w
 
-TINYGO=tinygo
-
 rebuild:
 	@make wasm
+	@make wasi
 
 wasm:
 	GOOS=js GOARCH=wasm go build -mod $(GOMOD) -ldflags="$(LDFLAGS)" \

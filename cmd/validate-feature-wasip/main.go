@@ -23,6 +23,7 @@ func main() {
 		log.Fatalf("Failed to validate feature, %v", err)
 	}
 
+	os.Exit(1)
 }
 
 //export validate_feature
