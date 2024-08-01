@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/sfomuseum/go-http-wasm"
+	"github.com/sfomuseum/go-http-wasm/v2"
 	validate_wasm "github.com/whosonfirst/go-whosonfirst-validate-wasm/http"
 )
 
@@ -23,7 +23,9 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	err := wasm.AppendAssetHandlers(mux)
+	wasm_opts := wasm.DefaultWASMOptions()
+	
+	err := wasm.AppendAssetHandlers(mux, wasm_opts)
 
 	if err != nil {
 		log.Fatalf("Failed to append wasm assets handler, %v", err)
@@ -38,7 +40,6 @@ func main() {
 	http_fs := http.FS(FS)
 	example_handler := http.FileServer(http_fs)
 
-	wasm_opts := wasm.DefaultWASMOptions()
 	example_handler = wasm.AppendResourcesHandler(example_handler, wasm_opts)
 
 	mux.Handle("/", example_handler)
