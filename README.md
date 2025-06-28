@@ -2,6 +2,10 @@
 
 Go package for compiling the `Validate` method of the go-whosonfirst-validate package to JavaScript-compatible and wasip1 WebAssembly (wasm) binaries. It also provides a net/http middleware packages for appending the necessary static assets and HTML resources to use the wasm binary in web applications.
 
+## Important
+
+This package has been deprecated and is no longer maintained. All the functionality has been moved in to the [whosonfirst/go-whosonfirst-validate](https://github.com/whosonfirst/go-whosonfirst-validate) package.
+
 ## Build
 
 ### wasmjs
